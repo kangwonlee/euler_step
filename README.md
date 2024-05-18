@@ -1,10 +1,41 @@
 
-# Title<br>과제 제목
-
+# Torricelli's Law : How long does it takes to drain a water tank?<br>토리첼리의 정리 : 물탱크의 물을 빼는데 걸리는 시간은 ?
 
 ## Description<br>설명
 
-* Description of the assignment.<br>과제에 대한 설명입니다.
+* Suppose there is a circular cylindical water tank with following parameters.<br>다음 매개변수의 원통형 물탱크를 생각해 보자.
+
+parameter<br>매개변수 | unit<br>단위 | description<br>설명
+:-------:|:-----:|-----
+$V(t)$ | $m^3$ | volume of the water in the tank<br>탱크에 들어있는 물의 부피
+$A$ | $m^2$ | cross section area of the tank<br>원통형 탱크의 단면적
+$a$ | $m^2$ | cross section area of the drain at the bottom of the tank<br>물탱크 바닥의 배수구의 단면적
+$h(t)$ | $m$ | water level of the tank<br>탱크의 물의 높이
+$g$ | $$m/{sec^2}$$ | gravitational acceleration<br>중력가속도
+
+* Its cross section area is `A` $m^2$ and is filled with a water level of `h(t)` $m$ at time `t` $sec$.<br>단면적은 `A` $m^2$ 이고 `t` $sec$ 일 때 높이 `h(t)` $m$ 까지 물이 차 있다.
+
+* At the bottom of the tank there is a closed hole with cross section area `a` $m^2$.<br>물탱크의 바닥에 단면적 `a` 인 구멍이 막혀 있다.
+
+* If you open the hole, the water will flow out due to gravity.<br>구멍의 마개를 열면, 중력에 의해 물이 흘러나올 것이다.
+
+* Let's express this as a differential equation.<br>이를 미분방정식으로 표현해 보자.
+
+$$
+    \frac{d}{dt}h(t) = \frac{1}{A}q(t)= -\frac{a}{A}\sqrt{2 g h(t)}
+$$
+
+* The theoretical discharge time is known as follows.<br>배수 시간의 엄밀해는 다음과 같다고 알려져 있다.
+
+$$
+T_{discharge}=\frac{V}{A_A}\sqrt{\frac{2}{gH}}=\frac{AH}{a}\sqrt{\frac{2}{gH}}
+$$
+
+* Also, the exact solution of `h(t)` is known as follows.<br>또한 `h(t)`의 엄밀해도 다음과 같다고 알려져 있다.
+
+$$
+h(t)=H\left(1-\frac{t}{T_{discharge}}\right)^2
+$$
 
 ## Implementation<br>구현
 
@@ -74,7 +105,7 @@
 
 ## References<br>참고문헌
 
-* References for the assignment.<br>과제에 대한 참고문헌입니다.
+* [Torricelli's law](https://en.wikipedia.org/wiki/Torricelli%27s_law)<br>[토리첼리의 정리](https://ko.wikipedia.org/wiki/토리첼리의_정리)
 
 ## NOTICE REGARDING STUDENT SUBMISSIONS<br>제출 결과물에 대한 알림
 
