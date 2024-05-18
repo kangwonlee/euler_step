@@ -17,7 +17,7 @@ $g$ | $$m/{sec^2}$$ | gravitational acceleration<br>중력가속도
 
 * At the bottom of the tank there is a closed hole with cross section area `a` $m^2$.<br>물탱크의 바닥에 단면적 `a` 인 구멍이 막혀 있다.
 
-* If you open the hole, the water will flow out due to gravity.<br>구멍의 마개를 열면, 중력에 의해 물이 흘러나올 것이다.
+* If you open the hole, the water will flow out due to gravity, thus the water level will decrease.<br>구멍의 마개를 열면, 중력에 의해 물이 흘러나올 것이며, 따라서 수위는 낮아질 것이다.
 
 * Let's express this as a differential equation.<br>이를 미분방정식으로 표현해 보자.
 
@@ -39,7 +39,35 @@ $$
 
 ## Implementation<br>구현
 
-* Description of the implementation.<br>구현에 대한 설명입니다.
+* Please implement the following functions in the `my_code_here.py` file.<br>다음 함수를 `my_code_here.py` 파일에 구현하시오.
+
+| function<br>함수 | return type<br>반환 형 | unit<br>단위 | return value<br>반환값 |
+|:--------:|:-----------:|:-----------:|:-----------:|
+| `dh_dt(t, h, a, A, g)` | `float` | $m/s$ | The time derivative of the height.<br> 높이의 시간에 대한 변화율. |
+| `numerical_h(t_start, t_end, h0, a, A, g)` | `dict` | - | Numerical approximation solution of the differential equation above. (see below) <br> 위 미분방정식의 수치 근사해. (아래 참고) |
+| `t_discharge(A, h0, a, g)` | `float` | sec | Exact solution of the drain time.<br>배수 시간의 엄밀해. |
+| `exact_h(t_start, t_end, h0, a, A, g)` | `dict` | - | Exact solution of the differential equation above. (see below) <br> 위 미분방정식의 엄밀해. (아래 참고) |
+
+* The functions will take the following arguments.<br>해당 함수들은 아래와 같은 매개변수를 받아들일것임.
+
+| argument<br>매개변수 | type<br>형 | unit<br>단위 | description<br>설명 |
+|:--------:|:-----------:|:-----------:|:-----------:|
+| `t` | `float` | $sec$ | time to calculate $\frac{d}{dt}h(t)$<br> $\frac{d}{dt}h(t)$을 계산할 시간 |
+| `t_start` | `float` | $sec$ | start time of the solution <br> 엄밀해 또는 수치해를 계산할 시작 시간 |
+| `t_end` | `float` | $sec$ | end time of the solution <br> 엄밀해 또는 수치해를 계산할 마지막 시간 |
+| `h` | `float` | $m$ | current height<br> 현재 높이 |
+| `h0` | `float` | $m$ | initial height<br> 초기 높이 |
+| `a` | `float` | $m^2$ | cross section area of the drain<br> 배수구의 단면적 |
+| `A` | `float` | $m^2$ | cross section area of the tank<br> 탱크의 단면적 |
+| `g` | `float` | $m/s/s$ | gravitatinal acceleration<br> 중력가속도 |
+
+* Please return a `dict` with following keys regarding the functions `numerical_h()` and `exact_h()`.<br>과제 함수 `numerical_h()`, `exact_h()` 에 대해서는, 다음 key를 담은 `dict`를 반환하시오.
+
+| return value key<br>반환값 key | type<br>형 |unit<br>단위 | value |
+|:--------:|:-----------:|:-----------:|:-----------:|
+| `'t_array'` | `numpy.ndarray` | $sec$ | time array of the exact or numerical solution. The first and last values would be `t_start` and `t_end` respectively. <br>엄밀해 또는 수치해의 시간 배열. 첫번째와 마지막 값은 각각 `t_start`와 `t_end`. |
+| `'h_array'` | `numpy.ndarray` | $m$ | array of the height at each time of `'time_array'`. The first value would be `h0`. <br>`'time_array'`의 각 시간에서의 높이. 첫번째 값은 `h0` |
+| `'n'` | `int` | - | length of each array<br>각 배열의 길이 |
 
 ### File Table<br>파일 목록
 
@@ -50,43 +78,16 @@ $$
 | `.github/workflows/` | YAML     | CI/CD Configuration<br>연속 통합/배포 설정 | Defines automated workflows for testing and deployment.<br>시험 배포 자동화 절차 설정. | Read-Only<br>읽기 전용 |
 | `tests/`              | Python   | Test Cases<br>시험 파일 | Tests to check the correctness of your code.<br>코드가 맞는지 시험. | Read-Only<br>읽기 전용 |
 
-### Function Table<br>함수 목록
-
-* Description of the functions of the `my_code_here.py` file.<br>`my_code_here.py` 파일의 함수에 대한 설명입니다.
-
-| function<br>함수 | return type<br>반환 형 | unit<br>단위 | return value<br>반환값 |
-|:--------:|:-----------:|:-----------:|:-----------:|
-| `f(x0, x1)` | `float` | $m^2$ | The area of the cross-section.<br> 단면의 전체 면적. |
-
-### Argument Table<br>매개변수 목록
-
-| function<br>함수 | return type<br>반환 형 | unit<br>단위 | return value<br>반환값 |
-|:--------:|:-----------:|:-----------:|:-----------:|
-| `x0` | `float` | $m$ | The width of the cross-section.<br> 단면의 폭. |
-| `x1` | `float` | $m$ | The height of the cross-section.<br> 단면의 높이. |
-
-### Return Value Key Table<br>매개변수 키 목록
-
-* If one (or more) of the assignment functions return a dictionary with multiple values, please describe the return value keys.<br>과제 함수 중 하나가(또는 여럿이) 여러 값을 담은 `dict`를 반환하는 경우, 반환값 키에 대해 설명하십시오.
-
-| return value key<br>반환값 key | type<br>형 |unit<br>단위 | value |
-|:--------:|:-----------:|:-----------:|:-----------:|
-| `'a_moment_above'` | `float` | $m^3$ | area moment of the section above the centroid. (>0)<br>중립축 위의 면적 모멘트. (>0) |
-| `'a_moment_below'` | `float` | $m^3$ | area moment of the section below the centroid. (>0)<br>중립축 아래의 면적 모멘트. (>0) |
-| `'close'` | `bool` | - | whether these two area moments are close to each other?<br>두 면적 모멘트가 가까운가? |
-
 ### Allowed Modules<br>허용 모듈 목록
 
 * In the `my_code_here.py` file, please `import` these modules only.<br>`my_code_here.py` 파일에서는 아래 모듈만 `import` 바랍니다.
 
 | module<br>모듈 | description<br>설명 |
 |:--------:|:-----------:|
-| `math` | math functions<br>수학 함수 |
-
+| `numpy` | numpy |
+| `scipy.integrate` | numerical solver<br>수치 해법 |
 
 ## Grading<br>평가
-
-* Description of the grading.<br>평가에 대한 설명입니다.
 
 | Criteria<br>기준	| Points<br>배점 |
 |:---------:|:------:|
