@@ -98,7 +98,7 @@ $$
 
 ## Example<br>예
 
-* Description of the example.<br>예에 대한 설명입니다.
+* Please see `sample.py`<br>`sample.py` 파일을 참고 바랍니다.
 
 ## Notes<br>참고사항
 
