@@ -1,6 +1,8 @@
 
 # Torricelli's Law : How long does it takes to drain a water tank?<br>토리첼리의 정리 : 물탱크의 물을 빼는데 걸리는 시간은 ?
 
+<img width="50%" alt="TorricelliLawDiagram" src="https://private-user-images.githubusercontent.com/17876446/331791872-5eb51f4b-70c4-41bf-b12e-ef9c51400fb0.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTYwNDEwMzUsIm5iZiI6MTcxNjA0MDczNSwicGF0aCI6Ii8xNzg3NjQ0Ni8zMzE3OTE4NzItNWViNTFmNGItNzBjNC00MWJmLWIxMmUtZWY5YzUxNDAwZmIwLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MTglMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTE4VDEzNTg1NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPThkZjY2MzIwMzY3M2Y5N2M1OTkyMmJjMThlZTkyYzI3MDM3NzY4NjU3YzU4MjA3YzE4MjZkMzJhYzVmMzgzMDgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.PATJRTfIhSxzu9NbzSORvXc32Idqsz0hJEJ5bGxt77E">
+
 ## Description<br>설명
 
 * Suppose there is a circular cylindical water tank with following parameters.<br>다음 매개변수의 원통형 물탱크를 생각해 보자.
