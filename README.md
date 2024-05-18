@@ -13,7 +13,7 @@ $a$ | $m^2$ | cross section area of the drain at the bottom of the tank<br>물�
 $h(t)$ | $m$ | water level of the tank<br>탱크의 물의 높이
 $g$ | $$m/{sec^2}$$ | gravitational acceleration<br>중력가속도
 
-* Its cross section area is `A` $m^2$ and is filled with a water level of `h(t)` $m$ at time `t` $sec$.<br>단면적은 `A` $m^2$ 이고 `t` $sec$ 일 때 높이 `h(t)` $m$ 까지 물이 차 있다.
+* The tank has a cross-sectional area of `A` $m^2$ and initially has an initial water level of `h0` $m$ at time `t` = 0 sec.<br>해당 탱크의 단면적은 `A` $m^2$ 이고 `t` = 0 $sec$ 일 때 초기 수위 `h0` $m$ 까지 물이 차 있다.
 
 * At the bottom of the tank there is a closed hole with cross section area `a` $m^2$.<br>물탱크의 바닥에 단면적 `a` 인 구멍이 막혀 있다.
 
@@ -75,7 +75,7 @@ $$
 |-----------------------|----------|---------------------------|-------------------------------------------------------------------------------------|:-------------:|
 | `my_code_here.py`    | Python   | Main Script<br>주 파일 | Write your code to solve the assignment problem in this file.<br>이 파일에 과제 코드를 작성.  | Modify<br>수정 |
 | `sample.py`           | Python   | Example Usage<br>사용 예 | This file demonstrates how to use the assignment code.<br>과제 코드 사용 예. | Read-Only<br>읽기 전용 |
-| `.github/workflows/` | YAML     | CI/CD Configuration<br>연속 통합/배포 설정 | Defines automated workflows for testing and deployment.<br>시험 배포 자동화 절차 설정. | Read-Only<br>읽기 전용 |
+| `.github/workflows/` | YAML     | Continuous Integration/Continuous Deployment Configuration<br>연속 통합/배포 설정 | Defines automated workflows for testing and deployment.<br>시험 배포 자동화 절차 설정. | Read-Only<br>읽기 전용 |
 | `tests/`              | Python   | Test Cases<br>시험 파일 | Tests to check the correctness of your code.<br>코드가 맞는지 시험. | Read-Only<br>읽기 전용 |
 
 ### Allowed Modules<br>허용 모듈 목록
@@ -98,11 +98,7 @@ $$
 
 ## Example<br>예
 
-* Please see `sample.py`<br>`sample.py` 파일을 참고 바랍니다.
-
-## Notes<br>참고사항
-
-* Additional notes.<br>추가적인 참고사항입니다.
+* Please run `sample.py` file to see an example of how to use the functions and visualize the results. <br>해당 함수들의 사용법과 해당 결과를 시각화 하는 법에 대해서는 `sample.py` 를 실행시켜 보기 바랍니다.
 
 ## References<br>참고문헌
 
