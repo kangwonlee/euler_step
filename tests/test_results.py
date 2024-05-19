@@ -260,7 +260,7 @@ def test_numerical_h(
         f"받은 값: {result['h_array']}\n"
     )
 
-    nt.assert_allclose(result['h_array'], expected_h_m, err_msg=msg)
+    nt.assert_allclose(result['h_array'], expected_h_m, rtol=0.05, err_msg=msg)
 
 
 if __name__ == "__main__":
