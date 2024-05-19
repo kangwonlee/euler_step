@@ -1,4 +1,5 @@
 import pathlib
+import random
 import sys
 
 import pytest
@@ -15,42 +16,69 @@ except ImportError as e:
         f"'my_code_here'를 불러오는 중 오류가 발생했습니다. {e}"
     )
 
-# Write your test functions here.
-# 각 테스트 함수는 'test_'로 시작해야 합니다.
 
-# Pytest will automatically discover and run these test functions.
-# Pytest 가 그러한 함수를 자동으로 찾아 실행할 것입니다.
+@pytest.fixture
+def t_discharge_sec() -> float:
+    return random.uniform(5.0, 20.0)
 
-# Example test function:
-# 시험 함수 예
-def test_example():
-    input_value = 'Please set input arguments.\n입력 매개변수를 정하기 바랍니다.'
-    result = mch.some_function(input_value)
-    expected_output = 'Please set expected results.\n예상 결과를 정하기 바랍니다.'
-    assert result == expected_output, (
-        f"Input arguments: {input_value}\n"
-        f"입력 매개변수 : {input_value}\n"
-        f"Expected: {expected_output}\n"
-        f"예상 결과: {expected_output}\n"
+
+@pytest.fixture
+def h0_m(a_m2:float, A_m2:float, g_mpsps:float, t_discharge_sec) -> float:
+    # td = A h0 / a * sqrt(2 / (g h0))
+    # td * (a / A) = h0 * sqrt(2 / g) * sqrt(1/h0)
+    # td * (a / A) * sqrt(g / 2) = h0 * sqrt(1/h0)
+    # h0 = (td * (a / A) * sqrt(g / 2))**2
+    # h0 = ((td * a) / A) ** 2 * g * 0.5
+    return ((t_discharge_sec * a_m2 / A_m2) ** 2) * (g_mpsps * 0.5)
+
+
+@pytest.fixture
+def h_m(h0_m:float) -> float:
+    '''
+    h to test dh_dt()
+    '''
+    return random.uniform(h0_m, h0_m*2.0)
+
+
+@pytest.fixture
+def a_m2() -> float:
+    return random.uniform(0.01, 0.1)
+
+
+@pytest.fixture
+def A_m2() -> float:
+    return random.uniform(0.1, 1.0)
+
+
+@pytest.fixture
+def g_mpsps() -> float:
+    return random.gammavariate(9.8, 0.1)
+
+
+@pytest.fixture
+def v_mps(g_mpsps:float, h_m:float,) -> float:
+    return (2.0 * g_mpsps * h_m)**0.5
+
+
+@pytest.fixture
+def q_m3ps(v_mps:float, a_m2:float,) -> float:
+    return v_mps * a_m2 * (-1.0)
+
+
+@pytest.fixture
+def t_sec(t_discharge_sec:float) -> float:
+    return t_discharge_sec * random.uniform(0.1, 0.2)
+
+
+def test_dh_dt(t_sec:float, h_m:float, a_m2:float, q_m3ps:float, A_m2:float, g_mpsps:float):
+    result = mch.dh_dt(t_sec, h_m, a_m2, A_m2, g_mpsps)
+    assert result == pytest.approx(q_m3ps / A_m2), (
+        f"input arguments: t={t_sec}, h={h_m}, a={a_m2}, A={A_m2}, g={g_mpsps}\n"
+        f"입력 매개변수: t={t_sec}, h={h_m}, a={a_m2}, A={A_m2}, g={g_mpsps}\n"
+        f"Expected: {q_m3ps / A_m2}\n"
+        f"예상값: {q_m3ps / A_m2}\n"
         f"Got: {result}\n"
-        f"실제 결과: {result}"
-    )
-
-
-# Test another function from the 'my_code_here' module.
-# 다른 함수를 시험하는 예
-def test_another_example():
-    input_value1 = 'Please set input arguments.\n입력 매개변수를 정하기 바랍니다.'
-    input_value2 = 'Please set input arguments.\n입력 매개변수를 정하기 바랍니다.'
-    result = mch.another_function(input_value1, input_value2)
-    expected_output = 'Please set expected results.\n예상 결과를 정하기 바랍니다.'
-    assert result == expected_output, (
-        f"Input arguments: {input_value1}, {input_value2}\n"
-        f"입력 매개변수 : {input_value1}, {input_value2}\n"
-        f"Expected: {expected_output}\n"
-        f"예상 결과: {expected_output}\n"
-        f"Got: {result}\n"
-        f"실제 결과: {result}"
+        f"받은 값: {result}\n"
     )
 
 
