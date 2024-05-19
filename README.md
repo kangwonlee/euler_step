@@ -30,13 +30,13 @@ $$
 * The theoretical discharge time is known as follows.<br>배수 시간의 엄밀해는 다음과 같다고 알려져 있다.
 
 $$
-T_{discharge}=\frac{V}{A_A}\sqrt{\frac{2}{gH}}=\frac{AH}{a}\sqrt{\frac{2}{gH}}
+T_{discharge}=\frac{V}{A_A}\sqrt{\frac{2}{gh_0}}=\frac{Ah_0}{a}\sqrt{\frac{2}{gh_0}}
 $$
 
 * Also, the exact solution of `h(t)` is known as follows.<br>또한 `h(t)`의 엄밀해도 다음과 같다고 알려져 있다.
 
 $$
-h(t)=H\left(1-\frac{t}{T_{discharge}}\right)^2
+h(t)=h_0\left(1-\frac{t}{T_{discharge}}\right)^2
 $$
 
 ## Implementation<br>구현
