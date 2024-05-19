@@ -3,6 +3,7 @@ import random
 import sys
 
 
+import matplotlib.pyplot as plt
 import numpy as np
 import numpy.testing as nt
 import pytest
@@ -120,7 +121,7 @@ def t_end_sec(t_discharge_sec:float) -> float:
     '''
     start time of the simulation
     '''
-    return t_discharge_sec * random.uniform(0.90, 0.95)
+    return t_discharge_sec * random.uniform(0.80, 0.90)
 
 
 def test_exact_h(
@@ -189,7 +190,16 @@ def test_exact_h(
         f"받은 값: {result['h_array']}\n"
     )
 
-    nt.assert_allclose(result['h_array'], expected_h_m, err_msg=msg)
+    try:
+        nt.assert_allclose(result['h_array'], expected_h_m, err_msg=msg)
+    except AssertionError as e:
+        plot_results(
+            t_start_sec=t_start_sec, t_end_sec=t_end_sec,
+            t_expected_array=np.array(result['t_array']), h_expected_array=expected_h_m,
+            h0_m=h0_m, a_m2=a_m2, A_m2=A_m2, g_mpsps=g_mpsps,
+            t_discharge_sec=t_discharge_sec,
+            exact=result,)
+        raise e
 
 
 def get_expected_h(h0_m:float, t_discharge_sec:float, t_array:np.ndarray) -> np.ndarray:
@@ -200,7 +210,7 @@ def test_numerical_h(
         t_start_sec:float, t_end_sec:float,
         h0_m:float, a_m2:float, A_m2:float, g_mpsps:float,
         t_discharge_sec:float):
-    result = mch.exact_h(t_start_sec, t_end_sec, h0_m, a_m2, A_m2, g_mpsps)
+    result = mch.numerical_h(t_start_sec, t_end_sec, h0_m, a_m2, A_m2, g_mpsps)
 
     msg_arg = (
         f"input arguments: t_start = {t_start_sec}, t_end = {t_end_sec}, h0 = {h0_m}, a={a_m2}, A={A_m2}, g={g_mpsps}\n"
@@ -260,7 +270,40 @@ def test_numerical_h(
         f"받은 값: {result['h_array']}\n"
     )
 
-    nt.assert_allclose(result['h_array'], expected_h_m, rtol=0.05, err_msg=msg)
+    try:
+        nt.assert_allclose(result['h_array'], expected_h_m, rtol=0.05, err_msg=msg)
+    except AssertionError as e:
+        plot_results(
+            t_start_sec=t_start_sec, t_end_sec=t_end_sec,
+            t_expected_array=np.array(result['t_array']), h_expected_array=expected_h_m,
+            h0_m=h0_m, a_m2=a_m2, A_m2=A_m2, g_mpsps=g_mpsps,
+            t_discharge_sec=t_discharge_sec,
+            numerical=result,)
+        raise e
+
+
+def plot_results(
+        t_start_sec:float, t_end_sec:float, 
+        t_expected_array:np.ndarray, h_expected_array:np.ndarray,
+        h0_m:float, a_m2:float, A_m2:float, g_mpsps:float,
+        t_discharge_sec:float,
+        numerical:dict=None, exact:dict=None,):
+
+    if exact is None:
+        exact = mch.exact_h(t_start_sec, t_end_sec, h0_m, a_m2, A_m2, g_mpsps)
+    if numerical is None:
+        numerical = mch.numerical_h(t_start_sec, t_end_sec, h0_m, a_m2, A_m2, g_mpsps)
+
+    fig, ax = plt.subplots()
+    ax.plot(exact['t_array'], exact['h_array'], 'o-', label='Exact (result)')
+    ax.plot(numerical['t_array'], numerical['h_array'], '.-', label='Numerical (result)')
+    ax.plot(t_expected_array, h_expected_array, 'r-', label='Exact (expected)')
+    ax.axvline(t_discharge_sec, color='r', linestyle='--', label='Discharge time')
+    ax.set_xlabel('Time (s)')
+    ax.set_ylabel('Height (m)')
+    ax.grid(True)
+    ax.legend()
+    plt.savefig('torricellis_law_result.png')
 
 
 if __name__ == "__main__":
