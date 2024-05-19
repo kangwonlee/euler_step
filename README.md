@@ -68,7 +68,7 @@ $$
 | return value key<br>반환값 key | type<br>형 |unit<br>단위 | value |
 |:--------:|:-----------:|:-----------:|:-----------:|
 | `'t_array'` | `numpy.ndarray` | $sec$ | time array of the exact or numerical solution. The first and last values would be `t_start` and `t_end` respectively. <br>엄밀해 또는 수치해의 시간 배열. 첫번째와 마지막 값은 각각 `t_start`와 `t_end`. |
-| `'h_array'` | `numpy.ndarray` | $m$ | array of the height at each time of `'time_array'`. The first value would be `h0`. <br>`'time_array'`의 각 시간에서의 높이. 첫번째 값은 `h0` |
+| `'h_array'` | `numpy.ndarray` | $m$ | array of the height at each time of `'time_array'`. <br>`'time_array'`의 각 시간에서의 높이. |
 | `'n'` | `int` | - | length of each array<br>각 배열의 길이 |
 
 ### File Table<br>파일 목록
