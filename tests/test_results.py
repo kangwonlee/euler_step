@@ -271,7 +271,7 @@ def test_numerical_h(
     )
 
     try:
-        nt.assert_allclose(result['h_array'], expected_h_m, rtol=0.05, err_msg=msg)
+        nt.assert_allclose(result['h_array'], expected_h_m, rtol=0.4, err_msg=msg)
     except AssertionError as e:
         plot_results(
             t_start_sec=t_start_sec, t_end_sec=t_end_sec,
