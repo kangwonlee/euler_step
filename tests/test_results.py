@@ -178,13 +178,84 @@ def test_exact_h(
         f"받은 'h_array'의 길이: {len(result['h_array'])}\n"
     )
 
-    t = np.array(result['t_array'])
+    t_array = np.array(result['t_array'])
 
-    expected_h_m = h0_m * (1.0 - t / t_discharge_sec)**2
+    expected_h_m = get_expected_h(h0_m, t_discharge_sec, t_array)
 
     msg = (
         f"{msg_arg}Expected: {expected_h_m}\n"
         f"예상값: {expected_h_m}\n"
+        f"Got: {result['h_array']}\n"
+        f"받은 값: {result['h_array']}\n"
+    )
+
+    nt.assert_allclose(result['h_array'], expected_h_m, err_msg=msg)
+
+
+def get_expected_h(h0_m:float, t_discharge_sec:float, t_array:np.ndarray) -> np.ndarray:
+    return h0_m * (1.0 - np.array(t_array) / t_discharge_sec)**2
+
+
+def test_numerical_h(
+        t_start_sec:float, t_end_sec:float,
+        h0_m:float, a_m2:float, A_m2:float, g_mpsps:float,
+        t_discharge_sec:float):
+    result = mch.exact_h(t_start_sec, t_end_sec, h0_m, a_m2, A_m2, g_mpsps)
+
+    msg_arg = (
+        f"input arguments: t_start = {t_start_sec}, t_end = {t_end_sec}, h0 = {h0_m}, a={a_m2}, A={A_m2}, g={g_mpsps}\n"
+        f"입력 매개변수: t_start = {t_start_sec}, t_end = {t_end_sec}, h0 = {h0_m}, a={a_m2}, A={A_m2}, g={g_mpsps}\n"
+    )
+
+    assert isinstance(result, dict), (
+        f"{msg_arg}Expected type: dict\n"
+        f"예상 자료형: dict\n"
+        f"Got type: {type(result)}\n"
+        f"받은 자료형: {type(result)}\n"
+    )
+
+    assert set(result.keys()) == {'t_array', 'h_array', 'n'}, (
+        f"{msg_arg}Expected keys: ['t_array', 'h_array', 'n']\n"
+        f"예상 키: ['t_array', 'h_array', 'n']\n"
+        f"Got keys: {list(result.keys())}\n"
+        f"받은 키: {list(result.keys())}\n"
+    )
+
+    assert isinstance(result['t_array'], np.ndarray), (
+        f"{msg_arg}Expected type of 't_array': numpy.ndarray\n"
+        f"'t_array'의 예상 자료형: numpy.ndarray\n"
+        f"Got type of 't_array': {type(result['t_array'])}\n"
+        f"받은 't_array'의 자료형: {type(result['t_array'])}\n"
+    )
+
+    assert isinstance(result['h_array'], np.ndarray), (
+        f"{msg_arg}Expected type of 'h_array': numpy.ndarray\n"
+        f"'h_array'의 예상 자료형: numpy.ndarray\n"
+        f"Got type of 'h_array': {type(result['h_array'])}\n"
+        f"받은 'h_array'의 자료형: {type(result['h_array'])}\n"
+    )
+
+    assert isinstance(result['n'], int), (
+        f"{msg_arg}Expected type of 'n': int\n"
+        f"'n'의 자료형: i예상 nt\n"
+        f"Got type of 'n': {type(result['n'])}\n"
+        f"받은 'n'의 자료형: {type(result['n'])}\n"
+    )
+
+    assert len(result['t_array']) == len(result['h_array']) == result['n'], (
+        f"{msg_arg}Expected length of 't_array', 'h_array': {result['n']}\n"
+        f"'t_array', 'h_array'의 예상 길이: {result['n']}\n"
+        f"Got length of 't_array': {len(result['t_array'])}\n"
+        f"받은 't_array'의 길이: {len(result['t_array'])}\n"
+        f"Got length of 'h_array': {len(result['h_array'])}\n"
+        f"받은 'h_array'의 길이: {len(result['h_array'])}\n"
+    )
+
+    expected_h_m = get_expected_h(h0_m, t_discharge_sec, np.array(result['t_array']))
+
+    msg = (
+        f"{msg_arg}Exact: {expected_h_m}\n"
+        f"엄밀해: {expected_h_m}\n"
         f"Got: {result['h_array']}\n"
         f"받은 값: {result['h_array']}\n"
     )
