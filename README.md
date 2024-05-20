@@ -1,7 +1,7 @@
 
 # Torricelli's Law : How long does it takes to drain a water tank?<br>토리첼리의 정리 : 물탱크의 물을 빼는데 걸리는 시간은 ?
 
-<img width="50%" alt="TorricelliLawDiagram svg" src="https://private-user-images.githubusercontent.com/17876446/331791872-5eb51f4b-70c4-41bf-b12e-ef9c51400fb0.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTYxNjQ2ODAsIm5iZiI6MTcxNjE2NDM4MCwicGF0aCI6Ii8xNzg3NjQ0Ni8zMzE3OTE4NzItNWViNTFmNGItNzBjNC00MWJmLWIxMmUtZWY5YzUxNDAwZmIwLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MjAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTIwVDAwMTk0MFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWZmMjRjMjk5MWQyMWY2YWEzNDQyYzRjOTE5ZDhmYjdhMDQ4Y2FmNmZhMGE1NTNhNGJlMzAyY2RlNTcxZWVmNjEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.WGEUQQ2uAn3ov5aCQ7rSbo_S2NZAEtBNvLMTo5_1bYA" >
+<img width="50%" alt="TorricelliLawDiagram svg" src="https://github.com/kangwonlee/water_tank/assets/17876446/5eb51f4b-70c4-41bf-b12e-ef9c51400fb0">
 
 ## Description<br>설명
 
