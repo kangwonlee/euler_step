@@ -1,5 +1,5 @@
 
-# Torricelli's Law : How long does it takes to drain a water tank?<br>토리첼리의 정리 : 물탱크의 물을 빼는데 걸리는 시간은 ?
+# Torricelli's Law : How long does it take to drain a water tank?<br>토리첼리의 정리 : 물탱크의 물을 빼는데 걸리는 시간은 ?
 
 <img width="50%" alt="TorricelliLawDiagram svg" src="https://github.com/kangwonlee/water_tank/assets/17876446/5eb51f4b-70c4-41bf-b12e-ef9c51400fb0">
 
