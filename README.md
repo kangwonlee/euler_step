@@ -50,6 +50,7 @@ $$
 | `t_discharge(A, h0, a, g)` | `float` | sec | Exact solution of the drain time.<br>배수 시간의 엄밀해. |
 | `exact_h(t_start, t_end, h0, a, A, g)` | `dict` | - | Exact solution of the differential equation above. (see below) <br> 위 미분방정식의 엄밀해. (아래 참고) |
 
+* Write all your code within the function(s) in `my_code_here.py`, but feel free to add comments outside the functions to explain your work.<br>`my_code_here.py` 의 모든 코드는 함수 안에 작성되어야 함. 예외로 설명을 위한 주석문은 함수 밖에 자유로이 추가할 수 있음.
 * The functions will take the following arguments.<br>해당 함수들은 아래와 같은 매개변수를 받아들일것임.
 
 | argument<br>매개변수 | type<br>형 | unit<br>단위 | description<br>설명 |
