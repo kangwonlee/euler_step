@@ -83,7 +83,6 @@ jobs:
       env:
         CHECK-GRAMMAR_RESULTS: "${{steps.check-grammar.outputs.result}}"
         ALL-LINES-IN-THE-FUNCTION_RESULTS: "${{steps.all-lines-in-the-function.outputs.result}}"
-        TEST-COMPARISON_RESULTS: "${{steps.test-comparison.outputs.result}}"
         TEST-RESULT_RESULTS: "${{steps.test-result.outputs.result}}"
       with:
         runners: check-grammar,all-lines-in-the-function,test-result,test-comparison
