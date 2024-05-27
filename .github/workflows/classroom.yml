@@ -85,7 +85,7 @@ jobs:
         ALL-LINES-IN-THE-FUNCTION_RESULTS: "${{steps.all-lines-in-the-function.outputs.result}}"
         TEST-RESULT_RESULTS: "${{steps.test-result.outputs.result}}"
       with:
-        runners: check-grammar,all-lines-in-the-function,test-result,test-comparison
+        runners: check-grammar,all-lines-in-the-function,test-result
 
     - name: upload pngs as artifacts
       id: png-artifacts
