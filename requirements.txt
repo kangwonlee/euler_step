@@ -1,4 +1,5 @@
 matplotlib
+numpy
 pytest
 pytest-xdist
 scipy
