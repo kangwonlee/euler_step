@@ -51,17 +51,17 @@ jobs:
     - name: Set report file names
       id: json
       run: |
-        echo "grammar=report_grammar.json" >> $GITHUB_OUTPUT
+        echo "syntax=report_syntax.json" >> $GITHUB_OUTPUT
         echo "style=report_style.json" >> $GITHUB_OUTPUT
         echo "results=report_results.json" >> $GITHUB_OUTPUT
   
-    - name: check grammar
-      id: check-grammar
+    - name: check syntax
+      id: check-syntax
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: check grammar
+        test-name: check syntax
         setup-command: ". test-env/bin/activate && echo $VIRTUAL_ENV && python -m pip list"
-        command: ". test-env/bin/activate && python -m pytest --json-report --json-report-file=${{ steps.json.outputs.grammar }} tests/test_grammar.py"
+        command: ". test-env/bin/activate && python -m pytest --json-report --json-report-file=${{ steps.json.outputs.syntax }} tests/test_syntax.py"
         timeout: 1
         max-score: 2
 
@@ -88,18 +88,18 @@ jobs:
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        CHECK-GRAMMAR_RESULTS: "${{steps.check-grammar.outputs.result}}"
+        CHECK-SYNTAX_RESULTS: "${{steps.check-syntax.outputs.result}}"
         ALL-LINES-IN-THE-FUNCTION_RESULTS: "${{steps.all-lines-in-the-function.outputs.result}}"
         TEST-RESULT_RESULTS: "${{steps.test-result.outputs.result}}"
       with:
-        runners: check-grammar,all-lines-in-the-function,test-result
+        runners: check-syntax,all-lines-in-the-function,test-result
 
     - name: AI Tutor
       id: ai_tutor
       if: always()
       env:
         GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-        GRAMMAR_REPORT: ${{ steps.json.outputs.grammar }}
+        SYNTAX_REPORT: ${{ steps.json.outputs.syntax }}
         STYLE_REPORT: ${{ steps.json.outputs.style }}
         RESULTS_REPORT: ${{ steps.json.outputs.results }}
       run: . test-env/bin/activate && echo $VIRTUAL_ENV && python -m pytest ./tests/ai_tutor.py
