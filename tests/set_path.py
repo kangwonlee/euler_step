@@ -16,7 +16,7 @@ def proj_folder(pytest_folder:pathlib.Path=pytest_folder()) -> pathlib.Path:
 
 
 def script_path(proj_folder:pathlib.Path=proj_folder()) -> pathlib.Path:
-    p = proj_folder / "ex01.py"
+    p = proj_folder / "my_code_here.py"
     assert p.exists()
     assert p.is_file()
     return p
