@@ -3,4 +3,5 @@ numpy
 pytest
 pytest-json-report
 pytest-xdist
+requests
 scipy
