@@ -104,7 +104,7 @@ jobs:
         SYNTAX_REPORT: ${{ steps.json.outputs.syntax }}
         STYLE_REPORT: ${{ steps.json.outputs.style }}
         RESULTS_REPORT: ${{ steps.json.outputs.results }}
-      run: . test-env/bin/activate && echo $VIRTUAL_ENV && python -m pytest ./tests/ai_tutor.py
+      run: . test-env/bin/activate && echo $VIRTUAL_ENV && python -m pytest ./ai_tutor/ai_tutor.py
   
     - name: upload pngs as artifacts
       id: png-artifacts
