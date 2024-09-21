@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import my_code_here as mch
+import exercise_code as mch
 
 
 def sample_main():

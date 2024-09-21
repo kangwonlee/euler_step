@@ -15,7 +15,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent.parent.absolute()))
 # Import the module containing the functions to be tested.
 # 테스트할 함수를 포함하는 모듈을 불러옵니다.
 try:
-    import my_code_here as mch
+    import exercise_code as mch
 except ImportError as e:
     pytest.fail(
         f"Error importing 'my_code_here': {e}"
