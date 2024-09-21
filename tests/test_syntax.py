@@ -1,4 +1,5 @@
 import ast
+import importlib
 import logging
 import pathlib
 import sys
@@ -48,9 +49,9 @@ def test_allowed_imports(py_file:pathlib.Path, allowed_modules:Tuple[str]):
                 )
 
 
-def test_importable():
-    import my_code_here
-    assert my_code_here is not None
+def test_importable(py_file:pathlib.Path):
+    module = importlib.import_module(py_file.name.split('.')[0])
+    assert module is not None
 
 
 if __name__ == "__main__":
