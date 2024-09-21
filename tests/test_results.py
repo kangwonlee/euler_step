@@ -82,8 +82,8 @@ def test_dh_dt(t_sec:float, h_m:float, a_m2:float, q_m3ps:float, A_m2:float, g_m
     msg = (
         f"input arguments: A={A_m2}, h0_m={h0_m}, a={a_m2}, g={g_mpsps}\n"
         f"입력 매개변수: A={A_m2}, h0_m={h0_m}, a={a_m2}, g={g_mpsps}\n"
-        f"Expected: {t_discharge_sec}\n"
-        f"예상값: {t_discharge_sec}\n"
+        f"Expected: {pytest.approx(q_m3ps / A_m2)}\n"
+        f"예상값: {pytest.approx(q_m3ps / A_m2)}\n"
         f"Got: {result}\n"
         f"받은 값: {result}\n"
     )
