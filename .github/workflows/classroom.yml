@@ -91,10 +91,10 @@ jobs:
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         CHECK-SYNTAX_RESULTS: "${{steps.check-syntax.outputs.result}}"
-        ALL-LINES-IN-THE-FUNCTION_RESULTS: "${{steps.all-lines-in-the-function.outputs.result}}"
+        CHECK-STYLE_RESULTS: "${{steps.check-style.outputs.result}}"
         TEST-RESULT_RESULTS: "${{steps.test-result.outputs.result}}"
       with:
-        runners: check-syntax,all-lines-in-the-function,test-result
+        runners: check-syntax,check-style,test-result
 
     - name: AI Tutor
       id: ai_tutor
@@ -106,22 +106,14 @@ jobs:
         RESULTS_REPORT: ${{ steps.json.outputs.results }}
       run: . test-env/bin/activate && echo $VIRTUAL_ENV && python -m pytest ./ai_tutor/ai_tutor.py
   
-    - name: upload pngs as artifacts
-      id: png-artifacts
+    - name: upload artifacts
+      id: artifacts
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: plots
-        path: ./*.png
-        retention-days: 21
-        overwrite: true
-
-    - name: upload json reports as artifacts
-      id: json-artifacts
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: reports
-        path: ./*.json
+        name: artifacts
+        path: |
+          ./*.png
+          ./*.json
         retention-days: 21
         overwrite: true
